@@ -81,7 +81,8 @@ export default function ContactPage() {
                 Présenter une demande de partenariat ou de contact terrain.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Le formulaire est prêt pour une connexion ultérieure à un email, CRM ou outil interne.
+                Le formulaire enregistre les demandes dans Supabase dès que les variables du projet
+                sont ajoutées dans Vercel.
               </p>
               <div className="mt-8">
                 <ContactForm />

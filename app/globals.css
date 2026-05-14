@@ -52,11 +52,20 @@
 
   html {
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    max-width: 100%;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
+  }
+
+  main {
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   ::selection {

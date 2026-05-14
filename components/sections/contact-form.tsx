@@ -4,36 +4,34 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
+import { submitContactMessage, type ContactMessageState } from "@/app/contact/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Votre nom est requis."),
-  email: z.string().email("Adresse email invalide."),
-  organization: z.string().min(2, "L'organisation est requise."),
-  message: z.string().min(20, "Merci d'ajouter quelques détails."),
-});
-
-type ContactFormValues = z.infer<typeof contactSchema>;
+import { contactMessageSchema, type ContactMessageValues } from "@/lib/contact/schema";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submission, setSubmission] = useState<ContactMessageState>({
+    status: "idle",
+    message: "",
+  });
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema),
+  } = useForm<ContactMessageValues>({
+    resolver: zodResolver(contactMessageSchema),
   });
 
-  const onSubmit = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 450));
-    setSubmitted(true);
-    reset();
+  const onSubmit = async (values: ContactMessageValues) => {
+    const result = await submitContactMessage(values);
+    setSubmission(result);
+
+    if (result.status === "success") {
+      reset();
+    }
   };
 
   return (
@@ -70,9 +68,9 @@ export function ContactForm() {
         Envoyer la demande
         <Send />
       </Button>
-      {submitted ? (
+      {submission.status !== "idle" ? (
         <p className="rounded-md bg-vahatra-leaf/10 px-4 py-3 text-sm font-medium text-vahatra-forest">
-          Message préparé. Dans une version connectée, il serait transmis à l’équipe VAHATRA.
+          {submission.message}
         </p>
       ) : null}
     </form>

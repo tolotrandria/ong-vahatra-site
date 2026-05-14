@@ -1,25 +1,10 @@
 import type { Metadata } from "next";
-import type { NextSeoProps } from "next-seo";
 
 import { absoluteUrl } from "@/lib/utils";
 
 const defaultTitle = "ONG VAHATRA - Microfinance sociale et développement rural à Madagascar";
 const defaultDescription =
   "ONG VAHATRA accompagne les familles rurales de Madagascar par la microfinance sociale, l'agriculture, la santé communautaire et l'inclusion financière.";
-
-export const defaultSeoConfig: NextSeoProps = {
-  title: defaultTitle,
-  description: defaultDescription,
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    url: absoluteUrl(),
-    siteName: "ONG VAHATRA",
-  },
-  twitter: {
-    cardType: "summary_large_image",
-  },
-};
 
 type MetadataInput = {
   title?: string;
