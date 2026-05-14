@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 43 52% 97%;
+    --foreground: 155 26% 12%;
+    --card: 44 100% 99%;
+    --card-foreground: 155 26% 12%;
+    --popover: 44 100% 99%;
+    --popover-foreground: 155 26% 12%;
+    --primary: 155 60% 18%;
+    --primary-foreground: 44 100% 98%;
+    --secondary: 36 41% 89%;
+    --secondary-foreground: 155 40% 16%;
+    --muted: 42 34% 91%;
+    --muted-foreground: 155 12% 38%;
+    --accent: 199 32% 44%;
+    --accent-foreground: 44 100% 98%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 44 100% 98%;
+    --border: 42 24% 84%;
+    --input: 42 24% 84%;
+    --ring: 155 60% 18%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 156 28% 9%;
+    --foreground: 44 48% 94%;
+    --card: 155 27% 12%;
+    --card-foreground: 44 48% 94%;
+    --popover: 155 27% 12%;
+    --popover-foreground: 44 48% 94%;
+    --primary: 42 80% 78%;
+    --primary-foreground: 155 60% 14%;
+    --secondary: 155 20% 18%;
+    --secondary-foreground: 44 48% 94%;
+    --muted: 155 20% 18%;
+    --muted-foreground: 42 18% 70%;
+    --accent: 199 35% 57%;
+    --accent-foreground: 156 28% 9%;
+    --border: 155 17% 24%;
+    --input: 155 17% 24%;
+    --ring: 42 80% 78%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(31, 122, 82, 0.22);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-28;
+  }
+
+  .image-vignette {
+    background:
+      linear-gradient(180deg, rgba(15, 31, 24, 0.18), rgba(15, 31, 24, 0.62)),
+      radial-gradient(circle at 30% 10%, rgba(255, 253, 247, 0.18), transparent 38%);
+  }
+}
